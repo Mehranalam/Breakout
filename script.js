@@ -16,6 +16,7 @@ let paddleX = (canvas.width - paddleWidth) / 2;
 
 let rightPressed = false;
 let leftPressed = false;
+let isTouch = false;
 
 const brickRowCount = 5;
 const brickColumnCount = 8;
@@ -35,6 +36,7 @@ for (let c = 0; c < brickColumnCount; c++) {
 
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
+canvas.addEventListener("touchmove", touchMoveHandler);
 
 function keyDownHandler(e) {
     if (e.key === "Right" || e.key === "ArrowRight") {
@@ -50,6 +52,17 @@ function keyUpHandler(e) {
     } else if (e.key === "Left" || e.key === "ArrowLeft") {
         leftPressed = false;
     }
+}
+
+function touchMoveHandler(e) {
+    const touchX = e.touches[0].clientX;
+    const relativeX = touchX - canvas.offsetLeft;
+
+    if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth / 2;
+    }
+
+    e.preventDefault(); // جلوگیری از اسکرول کردن صفحه در موبایل
 }
 
 function drawBall() {
