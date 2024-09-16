@@ -7,8 +7,8 @@ canvas.height = window.innerHeight * 0.8;
 let ballRadius = 10;
 let x = canvas.width / 2;
 let y = canvas.height - 30;
-let dx = 2;
-let dy = -2;
+let dx = 6;
+let dy = -6;
 
 const paddleHeight = 10;
 const paddleWidth = 75;
